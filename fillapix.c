@@ -61,9 +61,9 @@ int k=0,l=0;
 	}
 	//printf("\n");
 //여기서 Bmn행렬 formula 텍스트 파일에 선언
- /* for (i = 1 ; i <= row ; i++)
-        for (j = 1 ; j <= col ; j++)
-                fprintf(fp, "(declare-const B%d%d Int)\n", i, j) ;*/
+  for (int i = 1 ; i <= row ; i++)
+        for (int j = 1 ; j <= col ; j++)
+                fprintf(fp, "(declare-const B%d%d Int)\n", i, j) ;
   fclose(fpc);
 //여기서 부터 명제
   for (int i = 1; i <= row; i++)
