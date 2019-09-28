@@ -6,7 +6,7 @@ main ()
 	FILE * fp = fopen("formula", "w") ;
 
 	int x, y ;
-
+   
 	for (y = 1 ; y <= 8 ; y++)
 		for (x = 1 ; x <= 8 ; x++)
 			fprintf(fp, "(declare-const a%d%d Int)\n", y, x) ;
