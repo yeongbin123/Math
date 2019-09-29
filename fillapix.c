@@ -36,8 +36,8 @@ int k=0,l=0;
 		c = fgetc(fpd);
 		if(feof(fpd)) break;
 		if(c!='\n'&&c!=' '&&c!='\0'){
-			k++;
-			if((k%row)!=1){
+			l++;
+			if((l%col)!=1){
 				if(c=='?'){
 					//printf("-1 ");
 					a[k-1][l-1]=-1;
@@ -46,9 +46,9 @@ int k=0,l=0;
 					a[k-1][l-1]=atoi(&c);
 				}
 			}
-			else if((k%row)==1){
-				k=k%row;
-				l++;
+			else if((l%col)==1){
+				l=l%col;
+				k++;
 				if(c=='?'){
 					//printf("\n-1 ");
                                         a[k-1][l-1]=-1;
@@ -59,13 +59,18 @@ int k=0,l=0;
 			}
 		}
 	}
+  fclose(fpc);
 	//printf("\n");
+//행렬 테스트
+	/*for(int i=0;i<row;i++){
+		for(int j=0;j<col;j++)
+			printf("%d ",a[i][j]);
+		printf("\n");}*/
+//여기부터 명제시작
 //여기서 Bmn행렬 formula 텍스트 파일에 선언
   for (int i = 1 ; i <= row ; i++)
         for (int j = 1 ; j <= col ; j++)
                 fprintf(fp, "(declare-const B%d%d Int)\n", i, j) ;
-  fclose(fpc);
-//여기서 부터 명제
   for (int i = 1; i <= row; i++)
       for(int j = 1; j <= col; j++)
   		 fprintf(fp,"(assert(and (<= B%d%d 1) (<= 0 B%d%d)))\n", i, j, i, j);
@@ -101,7 +106,7 @@ int k=0,l=0;
 
   fprintf(fp,"(check-sat)\n(get-model)\n");
   fclose(fp) ;
-/*
+
 	FILE * fin = popen("z3 formula", "r") ; //FIXME
 	char buf[128] ;
 	fscanf(fin, "%s %s", buf, buf) ;
@@ -112,6 +117,6 @@ int k=0,l=0;
 		fscanf(fin, "%s", buf) ; printf("%s ", buf) ;
 		fscanf(fin, "%s", buf) ; printf("%s\n", buf) ;
 	}
-	pclose(fin) ;*/
+	pclose(fin) ;
 }
 
