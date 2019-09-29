@@ -108,15 +108,39 @@ int k=0,l=0;
   fclose(fp) ;
 
 	FILE * fin = popen("z3 formula", "r") ; //FIXME
-	char buf[128] ;
-	fscanf(fin, "%s %s", buf, buf) ;
-	while (!feof(fin)) {
+	char board[row+1][col+1] ;
+	int i, j, z;
+
+	char b[128] ;
+	char s[128] ;
+	char n[128] ;
+
+	fscanf(fin, "%s %s", b, b) ;
+	
+	for (z = 0 ; z < row*col ; z++) {
+		fscanf(fin,"%s %s %s %s %s", b, s, b, b, n) ;
+
+		i = s[1] - '0' ;
+		j = s[2] - '0' ;
+
+		if (strcmp(n, "0)") != 0) {
+			board[i][j] = 1 ;
+		}
+	}
+
+	for (i = 1 ; i <= row ; i++) {
+		for (j = 1 ; j <= col ; j++) {
+			printf("%d ", board[i][j]) ;
+		}
+		printf("\n") ;
+	}
+	/*while (!feof(fin)) {
 		fscanf(fin, "%s", buf) ; printf("%s ", buf) ;
 		fscanf(fin, "%s", buf) ; printf("%s ", buf) ;
 		fscanf(fin, "%s", buf) ; printf("%s ", buf) ;
 		fscanf(fin, "%s", buf) ; printf("%s ", buf) ;
 		fscanf(fin, "%s", buf) ; printf("%s\n", buf) ;
-	}
+	}*/
 	pclose(fin) ;
 }
 
