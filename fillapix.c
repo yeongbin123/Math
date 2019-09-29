@@ -2,10 +2,20 @@
 #include <stdlib.h>
 #include <string.h>
 
-int main ()
+//FILE * fpc =NULL;
+
+int main (int argc, char*argv[])
 {
   FILE * fp = fopen("formula", "w") ;
-  FILE * fpc = fopen("test","r");
+  FILE * fpc = NULL;
+
+ if(argc>1)
+        //printf("go");
+        fpc = fopen(argv[1],"r");
+  else{
+        printf("not a form\n");
+        exit(-1);}
+
   int **a=NULL;
   char buffer[20];
 
@@ -29,6 +39,7 @@ int main ()
 	for (int j = 0; j < row; j++)      
 	a[j]=(int*)malloc(col * sizeof(**a));
 //할당
+//FILE * fpd = fopen(argv[1],"r");
 FILE * fpd = fopen("test","r");
 char c;
 int k=0,l=0;
@@ -107,40 +118,44 @@ int k=0,l=0;
   fprintf(fp,"(check-sat)\n(get-model)\n");
   fclose(fp) ;
 
-	FILE * fin = popen("z3 formula", "r") ; //FIXME
-	char board[row+1][col+1] ;
-	int i, j, z;
+ FILE * fin = popen("z3 formula", "r") ; //FIXME
+        char board[row+1][col+1] ;
+        int i, j, z;
 
-	char b[128] ;
-	char s[128] ;
-	char n[128] ;
+        char b[128] ;
+        char s[128] ;
+        char n[128] ;
+	char q[128] ;
 
-	fscanf(fin, "%s %s", b, b) ;
-	
-	for (z = 0 ; z < row*col ; z++) {
-		fscanf(fin,"%s %s %s %s %s", b, s, b, b, n) ;
-
-		i = s[1] - '0' ;
-		j = s[2] - '0' ;
-
-		if (strcmp(n, "0)") != 0) {
-			board[i][j] = 1 ;
-		}
+        fscanf(fin, "%s %s", b, q) ;
+	if(strcmp(b,"unsat")==0){
+		printf("No solution!\n");
+		exit(-1);
 	}
+        for (z = 0 ; z < row*col ; z++) {
+                fscanf(fin,"%s %s %s %s %s", b, s, b, b, n) ;
 
-	for (i = 1 ; i <= row ; i++) {
-		for (j = 1 ; j <= col ; j++) {
-			printf("%d ", board[i][j]) ;
-		}
-		printf("\n") ;
-	}
-	/*while (!feof(fin)) {
-		fscanf(fin, "%s", buf) ; printf("%s ", buf) ;
-		fscanf(fin, "%s", buf) ; printf("%s ", buf) ;
-		fscanf(fin, "%s", buf) ; printf("%s ", buf) ;
-		fscanf(fin, "%s", buf) ; printf("%s ", buf) ;
-		fscanf(fin, "%s", buf) ; printf("%s\n", buf) ;
-	}*/
-	pclose(fin) ;
+                i = s[1] - '0' ;
+                j = s[2] - '0' ;
+
+                if (strcmp(n, "0)") != 0) {
+                        board[i][j] = 1 ;
+                }
+                else board[i][j] =0;
+        }
+
+        for (i = 1 ; i <= row ; i++) {
+                for (j = 1 ; j <= col ; j++) {
+                        printf("%d ", board[i][j]) ;
+                }
+                printf("\n") ;
+        }
+        /*while (!feof(fin)) {
+                fscanf(fin, "%s", buf) ; printf("%s ", buf) ;
+                fscanf(fin, "%s", buf) ; printf("%s ", buf) ;
+                fscanf(fin, "%s", buf) ; printf("%s ", buf) ;
+                fscanf(fin, "%s", buf) ; printf("%s ", buf) ;
+                fscanf(fin, "%s", buf) ; printf("%s\n", buf) ;
+        }*/
+        pclose(fin) ;
 }
-
