@@ -7,6 +7,7 @@
 
 int main (int argc, char*argv[])
 {
+  char str[1024], *token;
   FILE * fp = fopen("formula", "w") ;
   FILE * fpc = NULL;
   int case_count =0;
@@ -25,7 +26,8 @@ int main (int argc, char*argv[])
   //파일 읽어 들여서 row,column 수 알아내고 그 각각에 해당 값을 -1~9까지로
  //받아서 원소로 가지기
   int x, y ;
-  while(1){
+  int count_col=0, count_row=0;
+ /* while(1){
     fgets(buffer, sizeof(buffer), fpc);   
     if(feof(fpc))break;
     row++;
@@ -33,6 +35,18 @@ int main (int argc, char*argv[])
     col=strlen(buffer)/2;
     //여기서 column이 다르면 return null
    }
+  fclose(fpc);*/
+     while(fgets(str,1024,fpc) != NULL){
+    str[strlen(str)-1] = 0; // delete ‘\n’
+    row++;
+    token = strtok(str, " ");
+    while(token) {
+      col++;
+      token = strtok(NULL, " ");
+    }
+  }
+  col /= row;
+
   fclose(fpc);
 
   //row 와 column은 알게됨.
