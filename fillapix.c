@@ -116,9 +116,9 @@ int k=0,l=0;
     }
 
   fprintf(fp,"(check-sat)\n(get-model)\n");
-  fclose(fp) ;
+ 
 
- FILE * fin = popen("z3 formula", "r") ; //FIXME
+  FILE * fin = popen("z3 formula", "r") ; //FIXME
         char board[row+1][col+1] ;
         int i, j, z;
 
@@ -132,17 +132,20 @@ int k=0,l=0;
 		printf("No solution!\n");
 		exit(-1);
 	}
+	fprintf(fp,"(assert(not(=(+");
         for (z = 0 ; z < row*col ; z++) {
                 fscanf(fin,"%s %s %s %s %s", b, s, b, b, n) ;
 
                 i = s[1] - '0' ;
                 j = s[2] - '0' ;
-
+		
                 if (strcmp(n, "0)") != 0) {
                         board[i][j] = 1 ;
+			fprintf("B&d&d ",i,j);
                 }
                 else board[i][j] =0;
         }
+	fprintf("
 
         for (i = 1 ; i <= row ; i++) {
                 for (j = 1 ; j <= col ; j++) {
