@@ -9,60 +9,30 @@ int main (int argc, char** argv)
 
         int x=0, y=0;
 	char input[9][9];
-char str[100];
     int star_addr[9];
     int num[81];
     int num_addr[81];
     int count_num=0;
     int count_star=0;
-	int index = 0;
-	char buffer[100];
+	char buffer[20];
 	int col=0, row=0;
     //원본 파일에서 줄로 읽어오기
-/*    for (int i = 0; i<9; i++){
-        fscanf(f, "%s", input[i]);
-    }*/
-/*	while(fgets(str, 100, f) != NULL;
-	str[strlen(str)-1] = 0;
-	if(str[0] == 0) break;
-	row++;
-	token = strtok(ULL, " ");*/
     //변수 만들기
         for (y = 1 ; y <= 9 ; y++)
                 for (x = 1 ; x <= 9 ; x++)
                         fprintf(fp, "(declare-const a%d%d Int)\n", y, x) ;
-	//
-	/*for(y=0; y<9; y++) {
-		while(input[y][index] != '\n'){
-			if(input[index][y] == '*') {
-				star_addr[count_star] = (x+1)*10 + (y+1);
-				count_star++;
-				x++;
-			}
-			else if(input[y][index] == ' ') {}
-			else if(input[y][index] == '?') {
-				x++;
-			}
-			else {
-				num[count_num] = input[y][index]-'0';
-				num_addr[count_num] = (x+1)*10+y+1;
-				x++;
-			}
-		index++;
-}}*/
 	while(1) {
 		fgets(buffer, sizeof(buffer), f);
 		if(feof(f)) break;
 		row++;
 		col=0;
 		for(int i = 0; col<9; i++) {
-			if(!(buffer[i] == ' ') || (!(buffer[i] == '\n'))) {
+			if((buffer[i] != ' ')) {
 				col++;
 				input[row-1][col-1] = buffer[i];
 			}
 			
 		}
-	//	col++;
 	}
 	
     //월본에서 별과 숫자 위치 저장
