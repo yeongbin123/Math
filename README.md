@@ -2,10 +2,10 @@
 >* Q: How to build and run the programs?
 >
 > - A: Follow this step
-> - Step 1. Go to the directory with the puzzle name you want to solve. (There are 'sudoku', 'fillapix' and 'numbrix') 
-> - Step 2. Type "make clean" and then type "make" to build a program. 
-> - Step 3. The programs names are united as "quiz". So type like "./quiz <puzzle_file_name>". 
-> - Then, the program will show the solution for <puzzle_file_name>'s puzzle.
+> -- Step 1. Go to the directory with the puzzle name you want to solve. (There are 'sudoku', 'fillapix' and 'numbrix') 
+> -- Step 2. Type "make clean" and then type "make" to build a program. 
+> -- Step 3. The programs names are united as "quiz". So type like "./quiz <puzzle_file_name>". 
+> -- Then, the program will show the solution for <puzzle_file_name>'s puzzle.
 
 - Example: As an example, I want to get a solution for numbrix puzzle file named "test".
 
