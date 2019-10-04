@@ -8,7 +8,7 @@
 
 int main (int argc, char **argv)
 {
-  FILE * fp = fopen("formular", "w") ;
+  FILE * fp = fopen("formula", "w") ;
   FILE * fpc = fopen(argv[1],"r");
   int **a=NULL;
     char buffer[100];
@@ -184,7 +184,7 @@ int main (int argc, char **argv)
     fprintf(fp,"(check-sat)\n(get-model)\n");
      fclose(fp) ;
 
- FILE * fin = popen("z3 formular", "r") ; //FIXME
+ FILE * fin = popen("z3 formula", "r") ; //FIXME
     int board[row+2][col+2] ;
     int i, j, z;
 

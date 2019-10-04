@@ -4,4 +4,4 @@ quiz : fillapix.o
 fillapix.o : fillapix.c
 	gcc -c -o fillapix.o fillapix.c
 clean :
-	rm *.o quiz
+	rm *.o quiz formula

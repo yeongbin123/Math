@@ -4,4 +4,4 @@ quiz : sudoku.o
 sudoku.o : sudoku.c
 	gcc -c -o sudoku.o sudoku.c
 clean :
-	rm *.o quiz
+	rm *.o quiz formula
