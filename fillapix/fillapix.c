@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-//FILE * fpc =NULL;
 
 
 int main (int argc, char*argv[])
@@ -27,17 +26,8 @@ int main (int argc, char*argv[])
  //받아서 원소로 가지기
   int x, y ;
   int count_col=0, count_row=0;
-/*  while(1){
-    fgets(buffer, sizeof(buffer), fpc);   
-    if(feof(fpc))break;
-    row++;
-    //printf("%s", buffer);
-    col=strlen(buffer)/2;
-    //여기서 column이 다르면 return null
-   }
-  fclose(fpc);
-*/
-    while(fgets(str,1024,fpc) != NULL){
+    
+  while(fgets(str,1024,fpc) != NULL){
     str[strlen(str)-1] = 0; // delete ‘\n’
     if(str[0] == 0)
 	break;
@@ -88,12 +78,7 @@ int k=0,l=0;
 		}
 	}
   fclose(fpc);
-	//printf("\n");
-//행렬 테스트
-	/*for(int i=0;i<row;i++){
-		for(int j=0;j<col;j++)
-			printf("%d ",a[i][j]);
-		printf("\n");}*/
+
 //여기부터 명제시작
 //여기서 Bmn행렬 formula 텍스트 파일에 선언
   for (int i = 1 ; i <= row ; i++)
