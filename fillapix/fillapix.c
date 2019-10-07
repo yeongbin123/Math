@@ -77,7 +77,7 @@ int k=0,l=0;
 			}
 		}
 	}
-  fclose(fpc);
+  fclose(fpd);
 
 //여기부터 명제시작
 //여기서 Bmn행렬 formula 텍스트 파일에 선언
